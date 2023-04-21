@@ -1,13 +1,11 @@
 <?php
 
 namespace Wrapper\Models;
+use BaseParser;
 
-use DOMDocument;
-use Parser;
-
-class VnexpressParser extends Parser
+class VnexpressParser extends BaseParser
 {
-    public function __construct()
+    public function __construct(string $url,string$title,string$content,string $date)
     {
 
     }

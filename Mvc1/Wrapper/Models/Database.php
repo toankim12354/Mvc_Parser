@@ -1,7 +1,6 @@
 <?php
 
 namespace Wrapper\Models;
-
 use mysqli;
 use mysqli_result;
 use mysqli_sql_exception;
@@ -10,7 +9,11 @@ class Database {
     /**
      * @var false|mysqli
      */
-    protected mysqli|false $conn;
+    private mysqli|false $conn;
+    private  $content;
+    private $titli;
+    private $date;
+
 
     /**
      * connect to database
@@ -30,6 +33,10 @@ class Database {
      * @return bool|mysqli_result|void
      */
     public function query($sql) {
+        $title =$this->titli ;
+        $content = $this->content ;
+        $date = $this->date;
+        $sql = "INSERT INTO posts (title, content, date) VALUES ('$title', '$content', '$date')";
         try {
             return mysqli_query($this->conn, $sql);
         } catch (mysqli_sql_exception $e) {

@@ -1,11 +1,11 @@
 <?php
 
-abstract class Parser
+abstract class BaseParser implements ParserInterface
 {
-    const TITLE = '';
-    const CONTENT = '';
-    const DATE = '';
-    protected $url;
+protected string $url;
+protected string $title;
+protected string $content;
+protected string $date;
 
     public function __construct($url)
     {
@@ -74,9 +74,9 @@ abstract class Parser
             libxml_use_internal_errors(true);
             $dom->loadHTML($html);
             libxml_clear_errors();
-            $title = $this->getElementsByClass(self::TITLE);
-            $content = $this->getElementsByClass(self::CONTENT);
-            $date = $this->getElementsByClass(self::DATE);
+            $title = $this->getElementsByClass($this->title);
+            $content = $this->getElementsByClass($this->content);
+            $date = $this->getElementsByClass($this->date);
             return ['title' => $title, 'content' => $content, 'date' => $date];
         }
         return null;
